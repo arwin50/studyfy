@@ -5,20 +5,20 @@
               <img src="../images/pfp-test.jpg" alt="pfp-test" class="rounded-full"/>
           </div>
           <div class="flex p-3 w-full items-center">
-              <span class="text-black text-xl font-semibold">{{ post.name }}</span>
+              <span class="text-black text-base font-semibold">{{ post.name }}</span>
           </div>
       </div>
       <div class="flex flex-row w-full px-7">
-          <span class="text-black text-3xl font-semibold">
+          <span class="text-black text-xl">
               {{ post.postDetails }}
           </span>
       </div>
       <div class="flex flex-row justify-evenly items-center w-full h-[10vh]">
-          <button class="flex flex-row justify-evenly items-center h-[6vh] w-[20vh] text-black text-xl font-semibold rounded-lg hover:text-slate-700 hover:bg-slate-100">
+          <button class="flex flex-row justify-evenly items-center h-[6vh] w-[20vh] text-black text-base font-semibold rounded-lg hover:text-slate-700 hover:bg-slate-100">
               <img src="../images/comment.png" alt="My Image" class="h-7 w-7"/>
               Answer
           </button>
-          <button @click="toggleAnswersList" class="flex flex-row justify-evenly items-center h-[6vh] w-[40vh] text-black text-xl font-bold rounded-lg hover:text-slate-700 hover:bg-slate-100">
+          <button @click="toggleAnswersList" class="flex flex-row justify-evenly items-center h-[6vh] w-[40vh] text-black text-base font-bold rounded-lg hover:text-slate-700 hover:bg-slate-100">
               <span v-if="showAnswers">
                   Hide Existing Answers
               </span>
