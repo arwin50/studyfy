@@ -5,17 +5,17 @@ import QuestionPost from './components/QuestionPost.vue'
 import { onMounted } from 'vue'
 import axios from 'axios'
 
-let user = reactive(null)
+let user = reactive({})
 
 onMounted(async () => {
   try {
     const response = await axios.get('http://localhost:5000/usermounted', { withCredentials: true })
-    user = response.data // Set user data
-    console.log(user)
+    Object.assign(user, response.data)
   } catch (error) {
     console.error('Error fetching user:', error)
   }
 })
+
 const defaultPosts = reactive([
   {
     name: 'Arwin Delasan',
