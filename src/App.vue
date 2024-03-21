@@ -2,48 +2,64 @@
 import NavigationBar from './components/NavigationBar.vue'
 import { reactive } from 'vue'
 import QuestionPost from './components/QuestionPost.vue'
+import { onMounted } from 'vue'
+import axios from 'axios'
 
+let user = reactive(null)
+
+onMounted(async () => {
+  try {
+    const response = await axios.get('http://localhost:5000/usermounted', { withCredentials: true })
+    user = response.data // Set user data
+    console.log(user)
+  } catch (error) {
+    console.error('Error fetching user:', error)
+  }
+})
 const defaultPosts = reactive([
   {
-    name: "Arwin Delasan",
-    postDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    name: 'Arwin Delasan',
+    postDetails:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     answersList: [
-        "If someone looked at me and said: “Lorem ipsum”, I would ask what is wrong with silence. Silence is a perfectly acceptable option when you have nothing to say.",
-        "My response to such could be on a very large spectrum depending on who it is addressing me as well as the topic, style and volume of literature that I'm presuming is mine and either finished or incomplete.",
-        "Test answer 1."
+      'If someone looked at me and said: “Lorem ipsum”, I would ask what is wrong with silence. Silence is a perfectly acceptable option when you have nothing to say.',
+      "My response to such could be on a very large spectrum depending on who it is addressing me as well as the topic, style and volume of literature that I'm presuming is mine and either finished or incomplete.",
+      'Test answer 1.'
     ]
   },
   {
-    name: "Louise Fermin Deiparine",
-    postDetails: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...",
+    name: 'Louise Fermin Deiparine',
+    postDetails:
+      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...',
     answersList: [
-        "Given the standpoint and comprehensiveness of the majority under any given social or business situation, I would define the implication to be one of two or three things.",
-        "International students often rely on private loan providers to pursue their master's in the U.S. and Canada. NerdWallet recently recognized MPOWER Financing as the best student loan for international and DACA students.",
+      'Given the standpoint and comprehensiveness of the majority under any given social or business situation, I would define the implication to be one of two or three things.',
+      "International students often rely on private loan providers to pursue their master's in the U.S. and Canada. NerdWallet recently recognized MPOWER Financing as the best student loan for international and DACA students."
     ]
   },
   {
-    name: "Emily Smith",
-    postDetails: "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.",
+    name: 'Emily Smith',
+    postDetails:
+      'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
     answersList: [
-        "Our no-cosigner, no-collateral loans enable high-potential students to independently fund their graduate studies.",
-        "When determining eligibility, we consider your future earning potential and likelihood of academic and professional success.",
-        "Through our loans, more than 11,000 students have gained borderless access to education and made their education dreams a reality.",
-        "Take 60 seconds to see if you qualify."
+      'Our no-cosigner, no-collateral loans enable high-potential students to independently fund their graduate studies.',
+      'When determining eligibility, we consider your future earning potential and likelihood of academic and professional success.',
+      'Through our loans, more than 11,000 students have gained borderless access to education and made their education dreams a reality.',
+      'Take 60 seconds to see if you qualify.'
     ]
   },
   {
-    name: "Arwin Delasan",
-    postDetails: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.",
-    answersList: [
-    ]
+    name: 'Arwin Delasan',
+    postDetails:
+      'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.',
+    answersList: []
   }
-]);
+])
 </script>
 
 <template>
-  <NavigationBar />
-  <div class="flex flex-row h-[calc(100vh-74px)] w-full bg-[#F3F3F5]">
-    <div class="bg-white h-full flex w-1/4"></div>
+  <NavigationBar v-bind:user="user" />
+  <div class="flex flex-row h-[90%] w-full bg-[#F3F3F5]">
+    <div class="bg-white flex w-1/4 border-r"></div>
     <div class="h-full w-3/4 items-center overflow-auto">
       <QuestionPost v-for="(post, index) in defaultPosts" :key="index" :post="post" />
     </div>
