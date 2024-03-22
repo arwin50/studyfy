@@ -1,10 +1,8 @@
 <script setup>
-import NavigationBar from './components/NavigationBar.vue'
-import { reactive } from 'vue'
-import QuestionPost from './components/QuestionPost.vue'
-import { onMounted } from 'vue'
 import axios from 'axios'
-import { defaultPosts } from './defaults/defaultPosts.js'
+import { reactive } from 'vue'
+import { onMounted } from 'vue'
+import NavigationBar from './components/NavigationBar.vue';
 
 let user = reactive({})
 
@@ -21,12 +19,7 @@ onMounted(async () => {
 
 <template>
   <NavigationBar v-bind:user="user" />
-  <div class="flex flex-row h-[90%] w-full bg-[#F3F3F5]">
-    <div class="bg-white flex w-1/5 border-r"></div>
-    <div class="flex flex-col h-full w-4/5 items-center overflow-auto">
-      <QuestionPost v-for="(post, index) in defaultPosts" :key="index" :post="post" />
-    </div>
-  </div>
+  <router-view/>
 </template>
 
 <style scoped></style>

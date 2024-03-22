@@ -1,5 +1,6 @@
 export const defaultPosts = [
     {
+      questionId: 1090898,
       name: 'Arwin Delasan',
       postDetails:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
@@ -10,6 +11,7 @@ export const defaultPosts = [
       ]
     },
     {
+      questionId: 1097718,
       name: 'Louise Fermin Deiparine',
       postDetails:
         'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...',
@@ -19,6 +21,7 @@ export const defaultPosts = [
       ]
     },
     {
+      questionId: 1093123,
       name: 'Emily Smith',
       postDetails:
         'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
@@ -30,6 +33,7 @@ export const defaultPosts = [
       ]
     },
     {
+      questionId: 1097103,
       name: 'Arwin Delasan',
       postDetails:
         'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore.',
