@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AboutView from '@/views/AboutView.vue'
 import HomeView from '../views/HomeView.vue'
-import QuestionView from '@/views/QuestionView.vue'
 import PostView from '@/views/PostView.vue'
+import QuestionView from '@/views/QuestionView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -22,7 +22,7 @@ const router = createRouter({
       name: 'newPost',
       component: PostView
     },
-    { 
+    {
       path: '/question/:questionId',
       name: 'questionPage',
       component: QuestionView

@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md">
+    <!--  <router-link
+      :to="{ name: 'questionPage', params: { questionId: post.questionId } }"
+      class="hover:bg-slate-100"
+    > -->
     <div class="flex flex-row w-full ml-6 mt-5 mb-4">
-    <router-link :to="{ name: 'questionPage', params: { questionId: post.questionId }}" class="hover:bg-slate-100">
       <div class="w-12 rounded-full bg-black overflow-hidden">
         <img :src="props.post.author.image" alt="pfp-test" class="h-full w-full" />
       </div>
@@ -14,7 +17,7 @@
         {{ props.post.body }}
       </span>
     </div>
-    </router-link>
+    <!-- </router-link> -->
     <div class="flex flex-row justify-evenly items-center w-full h-[10vh]">
       <button
         class="flex flex-row justify-evenly items-center h-[6vh] w-[20vh] text-black text-base font-semibold rounded-lg hover:text-slate-700 hover:bg-slate-100"
@@ -55,7 +58,7 @@
 
 <script setup>
 import { defineProps, ref } from 'vue'
-import { RouterLink } from 'vue-router';
+import { RouterLink } from 'vue-router'
 
 const props = defineProps({
   post: Object
