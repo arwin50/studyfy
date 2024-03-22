@@ -1,0 +1,11 @@
+<script setup>
+import NewPost from '@/components/NewPost.vue'
+</script>
+
+<template>
+  <div class="flex flex-row h-full w-full justify-center">
+    <NewPost />
+  </div>
+</template>
+
+<style scoped></style>

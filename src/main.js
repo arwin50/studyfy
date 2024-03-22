@@ -1,15 +1,14 @@
 import './assets/main.css'
 
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
-import PrimeVue from 'primevue/config'
-import 'primevue/resources/themes/aura-dark-noir/theme.css'
-import 'primeicons/primeicons.css';
 const app = createApp(App)
 
-app.use(PrimeVue)
+const pinia = createPinia()
 
 app.use(router)
+app.use(pinia)
 
 app.mount('#app')

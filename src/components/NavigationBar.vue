@@ -1,10 +1,8 @@
 <script setup>
-import { defineProps, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
 
-const props = defineProps({
-  user: Object
-})
+const userStore = useUserStore()
 
 const loginWithGoogle = () => {
   window.open('http://localhost:5000/auth/google/callback', '_self')
@@ -16,17 +14,27 @@ const logout = () => {
 </script>
 
 <template>
-  <nav class="flex w-full h-14 items-center bg-white border-b">
-    <ul class="flex flex-grow mr-8">
-      <li class="text-black text-2xl font-semibold ml-10 flex gap-2">
-        <img src="https://cdn-icons-png.freepik.com/256/3145/3145765.png" class="h-8" />Studyfy
+  <nav class="flex w-full items-center bg-white border-b">
+    <ul class="flex flex-grow mr-4 items-center">
+      <li class="ml-10">
+        <router-link to="/" class="text-black text-2xl font-semibold flex gap-2">
+          <img src="https://cdn-icons-png.freepik.com/256/3145/3145765.png" class="h-8" />Studyfy
+        </router-link>
       </li>
-      <li v-if="props.user && props.user.image" class="ml-auto flex flex-end mr-4">
+      <li v-if="userStore.user && userStore.user.image" class="ml-auto flex flex-end mr-4">
+        <router-link
+          to="/newPost"
+          class="text-black text-base flex items-center rounded-lg py-2 pr-3 pl-2 border border-black"
+        >
+          <img src="../images/plus.svg" class="h-6" /> Create Post
+        </router-link>
+      </li>
+      <li v-if="userStore.user && userStore.user.image" class="flex flex-end mr-4">
         <button class="text-black text-base" @click="logout">Logout</button>
       </li>
-      <li v-if="props.user && props.user.image" class="flex flex-end">
+      <li v-if="userStore.user && userStore.user.image" class="flex flex-end">
         <div class="h-8 rounded-full overflow-hidden">
-          <img :src="props.user.image" class="h-full w-full" />
+          <img :src="userStore.user.image" class="h-full w-full" />
         </div>
       </li>
       <li v-else class="flex flex-end ml-auto">
