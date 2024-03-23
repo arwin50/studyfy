@@ -20,6 +20,7 @@
     </router-link>
     <div class="flex flex-row justify-evenly items-center w-full h-[10vh]">
       <button
+        v-if="userStore.user && userStore.user.image"
         class="flex flex-row justify-evenly items-center h-[6vh] w-[20vh] text-black text-base font-semibold rounded-lg hover:text-slate-700 hover:bg-slate-100"
       >
         <img src="../images/comment.png" alt="My Image" class="h-7 w-7" />
@@ -59,6 +60,9 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
+
+const userStore = useUserStore()
 
 const props = defineProps({
   post: Object
