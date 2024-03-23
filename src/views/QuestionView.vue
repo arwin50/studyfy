@@ -1,6 +1,6 @@
 <script setup>
 import QuestionPage from '@/components/QuestionPage.vue'
-import SignInBurst from '@/components/SignInBurst.vue'
+
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import SignInBurst from '@/components/SignInBurst.vue'
       <!-- <SignInBurst /> -->
     </div>
     <div class="flex flex-col h-full w-3/4 items-center overflow-auto">
-      <!--     <QuestionPage :postId="parseInt($route.params.questionId)" /> -->
+      <QuestionPage />
     </div>
   </div>
 </template>
