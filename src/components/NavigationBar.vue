@@ -14,9 +14,9 @@ const logout = () => {
 </script>
 
 <template>
-  <nav class="flex w-full items-center bg-white border-b">
+  <nav class="sticky top-0 w-full flex items-center justify-between bg-white border-b h-[8%] z-50">
     <ul class="flex flex-grow mr-4 items-center">
-      <li class="ml-10">
+      <li class="ml-4">
         <router-link to="/" class="text-black text-2xl font-semibold flex gap-2">
           <img src="https://cdn-icons-png.freepik.com/256/3145/3145765.png" class="h-8" />Studyfy
         </router-link>
