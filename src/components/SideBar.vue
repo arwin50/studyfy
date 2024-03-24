@@ -1,5 +1,5 @@
 <template>
-  <div class="flex fixed top-15 bg-white h-[92vh] w-[18%] border-r overflow-y-scroll">
+  <div class="flex fixed top-15 bg-white h-[92vh] w-[18%] border-r overflow-y-scroll scrollbar">
     <div class="flex flex-col w-[95%]">
       <div class="flex flex-col ml-6 mt-6 space-y-2">
         <router-link to="/">

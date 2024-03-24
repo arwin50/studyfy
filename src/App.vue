@@ -13,7 +13,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="h-full overflow-x-hidden">
+  <div class="h-full overflow-x-hidden scrollbar">
     <NavigationBar class="" />
     <main class="relative flex flex-row w-full">
       <SideBar />
