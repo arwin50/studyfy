@@ -16,20 +16,7 @@
         {{ currentPost.body }}
       </span>
     </div>
-    <div class="flex items-center justify-center p-7">
-      <div class="flex flex-row w-full items-center justify-evenly bg-gray-300 rounded-lg py-4">
-        <div class="size-10 rounded-full bg-black">
-          <img src="../images/pfp-test.jpg" alt="pfp-test" class="size-10 rounded-full" />
-        </div>
-        <input
-          className="w-4/5 h-10 p-2 pe-10 bg-transparent rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
-          placeholder="Write your answer..."
-        />
-        <button>
-          <img src="../images/submit.png" alt="pfp-test" class="size-6" />
-        </button>
-      </div>
-    </div>
+    <AnswerInputBox />
     <div class="flex flex-col items-center justify-center p-7 border-2 border-t-gray-300">
       <div
         v-if="currentPost.comments.length === 0"
@@ -46,10 +33,10 @@
         :answer="answer"
       >
         <div class="size-10 rounded-full bg-black">
-          <img src="../images/pfp-test.jpg" alt="pfp-test" class="size-10 rounded-full" />
+          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
         </div>
         <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
-          <span class="w-full font-bold pb-2"> Answerer Username </span>
+          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
           {{ answer.body }}
         </div>
       </div>
@@ -62,6 +49,7 @@
 
 <script setup>
 import axios from 'axios'
+import AnswerInputBox from '../components/AnswerInputBox.vue'
 import { onMounted, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
