@@ -17,7 +17,8 @@ import {
   HiBookmark,
   MdSchoolOutlined,
   BiQuestionCircle,
-  RiQuestionnaireLine
+  RiQuestionnaireLine,
+  HiArrowCircleRight
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -33,7 +34,8 @@ addIcons(
   HiBookmark,
   MdSchoolOutlined,
   BiQuestionCircle,
-  RiQuestionnaireLine
+  RiQuestionnaireLine,
+  HiArrowCircleRight
 )
 
 const app = createApp(App)

@@ -11,7 +11,7 @@
         <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
       </div>
     </div>
-    <div class="flex flex-row w-full px-7">
+    <div class="flex flex-row w-full px-7 pb-7">
       <span class="text-black text-xl">
         {{ currentPost.body }}
       </span>

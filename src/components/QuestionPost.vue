@@ -44,14 +44,18 @@
 
       <div
         v-else
-        class="flex items-center min-h-[10vh] w-5/6 bg-gray-200 rounded-xl p-4 mb-7"
-        v-for="(answer, index) in props.post.comments.body"
+        class="flex flex-row items-start justify-between w-full px-7"
+        v-for="(answer, index) in props.post.comments"
         :key="index"
         :answer="answer"
       >
-        <span class="text-black">
-          <p>{{ answer }}</p>
-        </span>
+        <div class="size-10 rounded-full bg-black">
+          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
+        </div>
+        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
+          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+          {{ answer.body }}
+        </div>
       </div>
     </div>
   </div>
