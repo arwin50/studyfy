@@ -4,6 +4,7 @@ import { onMounted } from 'vue'
 import { useUserStore } from '@/stores/userStore'
 import axios from 'axios'
 import NavigationBar from './components/NavigationBar.vue'
+import SideBar from '@/components/SideBar.vue'
 
 const userStore = useUserStore()
 
@@ -18,12 +19,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="h-full">
-    <NavigationBar class="h-[8%]" />
-    <main class="h-[92%] bg-[#F3F3F5]">
-      <RouterView />
+  <div class="h-full overflow-x-hidden">
+    <NavigationBar class="" />
+    <main class="relative flex flex-row w-full">
+      <SideBar />
+      <RouterView class="ml-[18%]" />
     </main>
   </div>
 </template>
 
-<style></style>
+<style>
+body {
+  background-color: #f3f3f5;
+}
+</style>

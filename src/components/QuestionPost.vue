@@ -4,11 +4,11 @@
       :to="{ name: 'questionPage', params: { questionId: props.post._id } }"
       class="hover:bg-slate-100"
     >
-      <div class="flex flex-row w-full ml-6 mt-5 mb-4">
+      <div class="flex flex-row ml-6 mt-5 mb-4">
         <div class="w-12 rounded-full bg-black overflow-hidden">
           <img :src="props.post.author.image" alt="pfp-test" class="h-full w-full" />
         </div>
-        <div class="flex p-2 w-full items-center">
+        <div class="flex p-2 items-center">
           <span class="text-black text-lg font-semibold">{{ props.post.author.displayName }} </span>
         </div>
       </div>
