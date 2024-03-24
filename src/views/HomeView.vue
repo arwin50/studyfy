@@ -1,6 +1,5 @@
 <script setup>
 import QuestionPost from '../components/QuestionPost.vue'
-import SignInBurst from '../components/SignInBurst.vue'
 import { onMounted } from 'vue'
 import { usePostStore } from '@/stores/postStore'
 
