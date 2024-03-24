@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import PostView from '@/views/PostView.vue'
 import QuestionView from '@/views/QuestionView.vue'
 import axios from 'axios'
+import EditPostView from '@/views/EditPostView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,12 @@ const router = createRouter({
       path: '/question/:questionId',
       name: 'questionPage',
       component: QuestionView
+    },
+    {
+      path: '/question/:questionId/edit',
+      name: 'editPost',
+      component: EditPostView,
+      meta: { requiresAuth: true }
     }
   ]
 })
@@ -45,7 +52,18 @@ router.beforeEach(async (to, from, next) => {
     }
 
     if (user._id) {
-      next()
+      if (to.name === 'editPost') {
+        const questionId = to.params.questionId
+        const response = await axios.get(`http://localhost:5000/question/${questionId}`)
+        const post = response.data
+        if (post.author._id === user._id) {
+          next()
+        } else {
+          next({ name: 'home' })
+        }
+      } else {
+        next()
+      }
     } else {
       next({ name: 'home' })
     }

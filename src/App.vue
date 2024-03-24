@@ -2,19 +2,13 @@
 import { RouterView } from 'vue-router'
 import { onMounted } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import axios from 'axios'
 import NavigationBar from './components/NavigationBar.vue'
 import SideBar from '@/components/SideBar.vue'
 
 const userStore = useUserStore()
 
-onMounted(async () => {
-  try {
-    const response = await axios.get('http://localhost:5000/usermounted', { withCredentials: true })
-    userStore.setUser(response.data)
-  } catch (error) {
-    console.error('Error fetching user:', error)
-  }
+onMounted(() => {
+  userStore.fetchUser()
 })
 </script>
 

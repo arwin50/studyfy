@@ -10,6 +10,25 @@
       <div class="flex p-3 w-full items-center">
         <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
       </div>
+      <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
+        <v-icon name="bi-three-dots" scale="1.3" @click="togglePostMenu" class="cursor-pointer" />
+        <div
+          v-if="showPostMenu"
+          class="flex flex-col absolute top-12 right-7 bg-white rounded shadow p-2 gap-1"
+        >
+          <div
+            class="flex items-center gap-1 hover:bg-gray-200 rounded-sm p-2 cursor-pointer"
+            @click="deletePost"
+          >
+            <v-icon name="md-delete-outlined" />Delete
+          </div>
+          <router-link :to="{ name: 'editPost', params: { questionId: questionId } }">
+            <div class="flex items-center gap-1 hover:bg-gray-200 rounded-sm p-2">
+              <v-icon name="md-edit-outlined" />Edit
+            </div>
+          </router-link>
+        </div>
+      </div>
     </div>
     <div class="flex flex-row w-full px-7 pb-7">
       <span class="text-black text-xl">
@@ -50,12 +69,32 @@
 <script setup>
 import axios from 'axios'
 import AnswerInputBox from '../components/AnswerInputBox.vue'
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
+import { useRouter } from 'vue-router'
 
+const userStore = useUserStore()
+const router = useRouter()
 let currentPost = reactive({})
+let showPostMenu = ref(false)
 let route = useRoute()
 let questionId = route.params.questionId
+
+const togglePostMenu = () => {
+  showPostMenu.value = !showPostMenu.value
+}
+
+const deletePost = async () => {
+  try {
+    const response = await axios.delete(`http://localhost:5000/question/${questionId}`)
+    console.log(response.data)
+    router.push('/')
+  } catch (error) {
+    console.error('Error deleting post:', error)
+  }
+}
+
 
 onMounted(async () => {
   try {

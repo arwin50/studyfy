@@ -18,7 +18,10 @@ import {
   MdSchoolOutlined,
   BiQuestionCircle,
   RiQuestionnaireLine,
-  HiArrowCircleRight
+  HiArrowCircleRight,
+  BiThreeDots,
+  MdDeleteOutlined,
+  MdEditOutlined
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -35,7 +38,10 @@ addIcons(
   MdSchoolOutlined,
   BiQuestionCircle,
   RiQuestionnaireLine,
-  HiArrowCircleRight
+  HiArrowCircleRight,
+  BiThreeDots,
+  MdDeleteOutlined,
+  MdEditOutlined
 )
 
 const app = createApp(App)

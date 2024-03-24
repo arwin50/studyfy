@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-
+import axios from 'axios'
 export const useUserStore = defineStore('user', {
   state: () => ({
     user: {}
@@ -10,6 +10,16 @@ export const useUserStore = defineStore('user', {
     },
     clearUser() {
       this.user = {}
+    },
+    async fetchUser() {
+      try {
+        const response = await axios.get('http://localhost:5000/usermounted', {
+          withCredentials: true
+        })
+        this.setUser(response.data)
+      } catch (error) {
+        console.error('Error fetching user:', error)
+      }
     }
   }
 })
