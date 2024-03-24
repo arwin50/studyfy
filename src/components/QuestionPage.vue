@@ -9,6 +9,9 @@
       </div>
       <div class="flex p-3 w-full items-center">
         <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
+        <span class="text-black font-semibold ml-3 text-xs rounded-full px-2 py-1 bg-green-200"
+          >{{ currentPost.subject.subjectTitle }}
+        </span>
       </div>
       <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
         <v-icon name="bi-three-dots" scale="1.3" @click="togglePostMenu" class="cursor-pointer" />
@@ -94,7 +97,6 @@ const deletePost = async () => {
     console.error('Error deleting post:', error)
   }
 }
-
 
 onMounted(async () => {
   try {
