@@ -10,7 +10,7 @@
       <div class="flex p-3 w-full items-center">
         <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
         <span class="text-black font-semibold ml-3 text-xs rounded-full px-2 py-1 bg-green-200"
-          >{{ currentPost.subject.subjectTitle }}
+          >{{ currentPost.subject.subjectTitle  }}
         </span>
       </div>
       <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
@@ -82,7 +82,8 @@ const router = useRouter()
 let currentPost = reactive({})
 let showPostMenu = ref(false)
 let route = useRoute()
-let questionId = route.params.questionId
+const questionId = route.params.questionId
+const category = route.params.category
 
 const togglePostMenu = () => {
   showPostMenu.value = !showPostMenu.value
@@ -90,7 +91,7 @@ const togglePostMenu = () => {
 
 const deletePost = async () => {
   try {
-    const response = await axios.delete(`http://localhost:5000/question/${questionId}`)
+    const response = await axios.delete(`http://localhost:5000/${category}/question/${questionId}`)
     console.log(response.data)
     router.push('/')
   } catch (error) {
@@ -100,7 +101,7 @@ const deletePost = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`http://localhost:5000/question/${questionId}`, {
+    const response = await axios.get(`http://localhost:5000/${category}/question/${questionId}`, {
       withCredentials: true
     })
     Object.assign(currentPost, response.data)

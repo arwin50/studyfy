@@ -10,16 +10,17 @@ const userStore = useUserStore()
 let currentPost = reactive({})
 let questionBody = ref('')
 let questionId = route.params.questionId
+let category = route.params.category
 const router = useRouter()
 
 const editPost = async () => {
   try {
-    const response = await axios.put(`http://localhost:5000/question/${questionId}`, {
+    const response = await axios.put(`http://localhost:5000/${category}/question/${questionId}`, {
       body: questionBody.value,
       authorId: userStore.user._id
     })
     console.log(response.data)
-    router.push(`/question/${questionId}`)
+    router.push(`/${category}/question/${questionId}`)
   } catch (error) {
     console.error('Error updating post:', error)
   }
@@ -27,7 +28,7 @@ const editPost = async () => {
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`http://localhost:5000/question/${questionId}`, {
+    const response = await axios.get(`http://localhost:5000/${category}/question/${questionId}`, {
       withCredentials: true
     })
     Object.assign(currentPost, response.data)

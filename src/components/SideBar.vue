@@ -32,7 +32,14 @@
         </button>
 
         <div v-if="showTopics" class="" :class="{ 'open-height': showTopics }">
-          <router-link to="/" v-for="(topic, index) in topics" :key="index">
+          <router-link
+            v-for="(topic, index) in topics"
+            :key="index"
+            :to="{
+              name: 'categoryPage',
+              params: { category: topic.name }
+            }"
+          >
             <div
               class="flex flex-row items-center gap-3 h-[40px] py-6 px-3 rounded-lg hover:text-slate-700 hover:bg-slate-100"
             >

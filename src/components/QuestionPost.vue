@@ -1,7 +1,10 @@
 <template>
   <div class="flex flex-col w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md">
     <router-link
-      :to="{ name: 'questionPage', params: { questionId: props.post._id } }"
+      :to="{
+        name: 'questionPage',
+        params: { category: props.post.subject.subjectTitle, questionId: props.post._id }
+      }"
       class="hover:bg-slate-100"
     >
       <div class="flex flex-row ml-6 mt-5 mb-4 w-[93%] gap-1">

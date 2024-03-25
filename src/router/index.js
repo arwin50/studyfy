@@ -5,6 +5,7 @@ import PostView from '@/views/PostView.vue'
 import QuestionView from '@/views/QuestionView.vue'
 import axios from 'axios'
 import EditPostView from '@/views/EditPostView.vue'
+import CategoryView from '@/views/CategoryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -13,6 +14,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+    {
+      path: '/:category/question',
+      name: 'categoryPage',
+      component: CategoryView
     },
     {
       path: '/about',
@@ -26,12 +32,12 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/question/:questionId',
+      path: '/:category/question/:questionId',
       name: 'questionPage',
       component: QuestionView
     },
     {
-      path: '/question/:questionId/edit',
+      path: '/:category/question/:questionId/edit',
       name: 'editPost',
       component: EditPostView,
       meta: { requiresAuth: true }
@@ -54,7 +60,8 @@ router.beforeEach(async (to, from, next) => {
     if (user._id) {
       if (to.name === 'editPost') {
         const questionId = to.params.questionId
-        const response = await axios.get(`http://localhost:5000/question/${questionId}`)
+        const category = to.params.category
+        const response = await axios.get(`http://localhost:5000/${category}/question/${questionId}`)
         const post = response.data
         if (post.author._id === user._id) {
           next()
