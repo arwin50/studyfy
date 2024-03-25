@@ -2,10 +2,8 @@
   <div class="flex fixed top-15 bg-white h-[92vh] w-[18%] border-r overflow-y-scroll scrollbar">
     <div class="flex flex-col w-[95%]">
       <div class="flex flex-col ml-6 mt-6 space-y-2">
-        <router-link to="/">
+        <router-link v-for="(link, index) in firstlinks" :key="index" :to="{ name: link.path }">
           <div
-            v-for="(link, index) in firstlinks"
-            :key="index"
             class="flex flex-row items-center h-[40px] py-6 px-3 gap-3 rounded-lg hover:text-slate-700 hover:bg-slate-100"
           >
             <v-icon :name="link.icon" scale="1.4" />
@@ -80,11 +78,13 @@ const userStore = useUserStore()
 let firstlinks = reactive([
   {
     name: 'Home',
-    icon: 'hi-home'
+    icon: 'hi-home',
+    path: 'home'
   },
   {
     name: 'Popular',
-    icon: 'bi-box-arrow-in-up-right'
+    icon: 'bi-box-arrow-in-up-right',
+    path: 'home'
   }
 ])
 
@@ -94,7 +94,8 @@ watch(
     if (newUser && newUser._id) {
       firstlinks.push({
         name: 'Your Questions',
-        icon: 'ri-questionnaire-line'
+        icon: 'ri-questionnaire-line',
+        path: 'myquestions'
       })
     }
   }

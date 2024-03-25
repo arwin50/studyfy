@@ -6,6 +6,7 @@ import QuestionView from '@/views/QuestionView.vue'
 import axios from 'axios'
 import EditPostView from '@/views/EditPostView.vue'
 import CategoryView from '@/views/CategoryView.vue'
+import UserQuestionsView from '@/views/UserQuestionsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,12 @@ const router = createRouter({
       path: '/:category/question',
       name: 'categoryPage',
       component: CategoryView
+    },
+    {
+      path: '/myquestions',
+      name: 'myquestions',
+      component: UserQuestionsView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/about',
