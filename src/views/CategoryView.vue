@@ -41,7 +41,10 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col min-h-full w-4/5 items-center">
+  <div class="flex flex-col min-h-full w-full items-center">
+    <div class="w-full">
+      <CategoryDescription />
+    </div>
     <QuestionPost v-for="post in posts" :key="post._id" :post="post" />
   </div>
 </template>
