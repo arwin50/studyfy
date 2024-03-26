@@ -1,4 +1,5 @@
 <script setup>
+import ProfilePicture from './ProfilePicture.vue';
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
 
@@ -33,9 +34,7 @@ const logout = () => {
         <button class="text-black text-base" @click="logout">Logout</button>
       </li>
       <li v-if="userStore.user && userStore.user.image" class="flex flex-end">
-        <div class="h-8 rounded-full overflow-hidden">
-          <img :src="userStore.user.image" class="h-full w-full" />
-        </div>
+        <ProfilePicture :user="userStore.user"/>
       </li>
       <li v-else class="flex flex-end ml-auto">
         <button class="text-black" @click="loginWithGoogle">
