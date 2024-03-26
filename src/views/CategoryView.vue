@@ -3,7 +3,6 @@ import QuestionPost from '../components/QuestionPost.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-import CategoryDescription from '../components/CategoryDescription.vue'
 
 const route = useRoute()
 let category = ref(route.params.category)
