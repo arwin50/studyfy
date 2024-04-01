@@ -7,6 +7,7 @@ import axios from 'axios'
 import EditPostView from '@/views/EditPostView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import UserQuestionsView from '@/views/UserQuestionsView.vue'
+import { usePostStore } from '@/stores/postStore'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
