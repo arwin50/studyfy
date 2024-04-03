@@ -1,8 +1,7 @@
 <script setup>
 import QuestionPost from '../components/QuestionPost.vue'
-import { onMounted, reactive } from 'vue'
 import { useUserStore } from '@/stores/userStore'
-import { usePostStore } from '@/stores/postStore'
+
 
 const userStore = useUserStore()
 </script>
