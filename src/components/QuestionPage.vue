@@ -4,14 +4,18 @@
     class="flex flex-col w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md"
   >
     <div class="flex flex-row w-full p-7">
-      <div class="size-14 rounded-full bg-black">
-        <img :src="currentPost.author.image" alt="pfp-test" class="size-14 rounded-full" />
-      </div>
-      <div class="flex p-3 w-full items-center">
-        <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
-        <span class="text-black font-semibold ml-3 text-xs rounded-full px-2 py-1 bg-green-200"
-          >{{ currentPost.subject.subjectTitle  }}
-        </span>
+      <div class="flex flex-row w-full gap-1">
+        <div class="w-12 rounded-full bg-black overflow-hidden">
+          <img :src="currentPost.author.image" alt="pfp-test" class="h-full w-full" />
+        </div>
+        <div class="flex p-2 items-center w-[95%]">
+          <span class="text-black text-lg font-semibold"
+            >{{ currentPost.author.displayName }}
+          </span>
+          <span class="text-black font-semibold ml-auto text-xs rounded-full px-2 py-1 bg-green-200"
+            >{{ currentPost.subject.subjectTitle }}
+          </span>
+        </div>
       </div>
       <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
         <v-icon name="bi-three-dots" scale="1.3" @click="togglePostMenu" class="cursor-pointer" />
@@ -33,7 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row w-full px-7 pb-7">
+    <div class="flex flex-row w-full px-7 mb-8">
       <span class="text-black text-xl">
         {{ currentPost.body }}
       </span>
@@ -54,8 +58,8 @@
         :key="index"
         :answer="answer"
       >
-        <div class="size-10 rounded-full bg-black">
-          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
+        <div class="w-10 rounded-full bg-black overflow-hidden">
+          <img :src="answer.author.image" alt="pfp-test" class="h-full w-full" />
         </div>
         <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
           <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
