@@ -43,7 +43,7 @@
       </span>
     </div>
     <AnswerInputBox />
-    <div class="flex flex-col items-center justify-center p-7 border-2 border-t-gray-300">
+    <div class="flex flex-col items-center justify-center p-7 border-t bg-[#fbfefb]">
       <div
         v-if="currentPost.comments.length === 0"
         class="flex items-center h-[30vh] text-gray-400 text-xl font-semibold mb-7"
@@ -53,22 +53,29 @@
 
       <div
         v-else
-        class="flex flex-row items-start justify-between w-full px-7"
+        class="flex flex-row items-start justify-between w-full"
         v-for="(answer, index) in currentPost.comments"
         :key="index"
         :answer="answer"
       >
-        <div class="w-10 rounded-full bg-black overflow-hidden">
-          <img :src="answer.author.image" alt="pfp-test" class="h-full w-full" />
-        </div>
-        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
-          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+        <div
+          class="flex flex-col min-h-[10vh] w-full text-black bg-[#edf2f4] rounded-xl p-4 mb-5 gap-3"
+        >
+          <div class="flex flex-row items-center gap-2">
+            <div class="w-10 rounded-full bg-black overflow-hidden">
+              <img :src="answer.author.image" alt="pfp-test" class="h-full w-full" />
+            </div>
+            <span class="w-full font-semibold"> {{ answer.author.displayName }} </span>
+          </div>
           {{ answer.body }}
         </div>
       </div>
     </div>
   </div>
-  <div v-else class="flex justify-center w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md">
+  <div
+    v-else
+    class="flex justify-center w-2/3 mx-10 my-5 h-[50vh] bg-white rounded-lg drop-shadow-md items-center font-bold"
+  >
     Loading ...
   </div>
 </template>
