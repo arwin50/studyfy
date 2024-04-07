@@ -21,7 +21,9 @@ import {
   HiArrowCircleRight,
   BiThreeDots,
   MdDeleteOutlined,
-  MdEditOutlined
+  MdEditOutlined,
+  BiPersonFill,
+  BiArrowRightShort
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -41,7 +43,9 @@ addIcons(
   HiArrowCircleRight,
   BiThreeDots,
   MdDeleteOutlined,
-  MdEditOutlined
+  MdEditOutlined,
+  BiPersonFill,
+  BiArrowRightShort
 )
 
 const app = createApp(App)
