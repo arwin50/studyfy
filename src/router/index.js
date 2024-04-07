@@ -7,6 +7,8 @@ import axios from 'axios'
 import EditPostView from '@/views/EditPostView.vue'
 import CategoryView from '@/views/CategoryView.vue'
 import UserQuestionsView from '@/views/UserQuestionsView.vue'
+import LoginView from '@/views/LoginView.vue'
+import { usePostStore } from '@/stores/postStore'
 import ProfileView from '@/views/ProfileView.vue'
 
 const router = createRouter({
@@ -16,6 +18,11 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
+    },
+      {
+      path: '/login',
+      name: 'login',
+      component: LoginView
     },
     {
       path: '/:category/question',

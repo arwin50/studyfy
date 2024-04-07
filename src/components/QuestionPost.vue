@@ -22,66 +22,16 @@
         </span>
       </div>
     </router-link>
-    <div class="flex flex-row justify-evenly items-center w-full h-[10vh]">
-      <button
-        v-if="userStore.user && userStore.user.image"
-        class="flex flex-row justify-evenly items-center h-[6vh] w-[20vh] text-black text-base font-semibold rounded-lg hover:text-slate-700 hover:bg-slate-100"
-      >
-        <img src="../images/comment.png" alt="My Image" class="h-7 w-7" />
-        Answer
-      </button>
-      <button
-        @click="toggleAnswersList"
-        class="flex flex-row justify-evenly items-center h-[6vh] w-[40vh] text-black text-base font-bold rounded-lg hover:text-slate-700 hover:bg-slate-100"
-      >
-        <span v-if="showAnswers"> Hide Existing Answers </span>
-        <span v-if="!showAnswers"> Show Existing Answers </span>
-      </button>
-    </div>
-    <div v-if="showAnswers" class="flex flex-col items-center justify-evenly w-full px-7 pt-7">
-      <div
-        v-if="props.post.comments.length === 0"
-        class="flex items-center h-[30vh] text-gray-400 text-xl font-semibold mb-7"
-      >
-        <p>No answers yet!</p>
-      </div>
-
-      <div
-        v-else
-        class="flex flex-row items-start justify-between w-full px-7"
-        v-for="(answer, index) in props.post.comments"
-        :key="index"
-        :answer="answer"
-      >
-        <div class="size-10 rounded-full bg-black">
-          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
-        </div>
-        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
-          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
-          {{ answer.body }}
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-import ProfilePicture from './ProfilePicture.vue';
 import { defineProps, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useUserStore } from '@/stores/userStore'
-
-const userStore = useUserStore()
 
 const props = defineProps({
   post: Object
 })
-
-let showAnswers = ref(false)
-
-const toggleAnswersList = () => {
-  showAnswers.value = !showAnswers.value
-}
 </script>
 
 <style scoped></style>

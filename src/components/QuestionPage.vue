@@ -31,13 +31,13 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row w-full px-7 pb-7 break-words">
+    <div class="flex flex-row w-full px-7 pb-7">
       <span class="text-black text-xl">
         {{ currentPost.body }}
       </span>
     </div>
     <AnswerInputBox />
-    <div class="flex flex-col items-center justify-center p-7 border-2 border-t-gray-300">
+    <div class="flex flex-col items-center justify-center p-7 border-t bg-[#fbfefb]">
       <div
         v-if="currentPost.comments.length === 0"
         class="flex items-center h-[30vh] text-gray-400 text-xl font-semibold mb-7"
@@ -47,42 +47,25 @@
 
       <div
         v-else
-        class="flex flex-row items-start justify-between w-full px-7"
+        class="flex flex-row items-start justify-between w-full"
         v-for="(answer, index) in currentPost.comments"
         :key="index"
         :answer="answer"
       >
-        <ProfilePicture :user="answer.author"/>
-        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7 break-words">
-          <div class="flex flex-row justify-between">
-            <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
-            <CommentEditTools 
-              v-if="toggleEditTools[index]" 
-              :currentComment="answer"
-              :newCommentBody="answer.body"
-              @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
-            />
-            <CommentMenu 
-              v-if="!toggleEditTools[index]" 
-              :currentComment="answer" 
-              @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
-            />
-          </div>
-          <textarea
-            v-if="toggleEditTools[index]"
-            className="flex w-full h-full p-2 pe-10 bg-white rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
-            placeholder="Write your answer..."
-            v-model="answer.body"
-            @input="autoGrow"
-          />
-          <span v-if="!toggleEditTools[index]">
-            {{ answer.body }}
-          </span>
+        <div class="size-10 rounded-full bg-black">
+          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
+        </div>
+        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
+          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+          {{ answer.body }}
         </div>
       </div>
     </div>
   </div>
-  <div v-else class="flex justify-center w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md">
+  <div
+    v-else
+    class="flex justify-center w-2/3 mx-10 my-5 h-[50vh] bg-white rounded-lg drop-shadow-md items-center font-bold"
+  >
     Loading ...
   </div>
 </template>

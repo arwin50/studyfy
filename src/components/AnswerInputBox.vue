@@ -29,17 +29,20 @@ const userStore = useUserStore()
 const answerBody = ref('')
 
 const postComment = async () => {
-  let questionId = route.params.questionId
+  const questionId = route.params.questionId
+  const category = route.params.category
 
   try {
     const commentData = {
-      postId: questionId,
       author: userStore.user._id,
       body: answerBody.value
     }
 
     console.log('data posted', commentData)
-    await axios.post('http://localhost:5000/comments', commentData)
+    await axios.post(
+      `http://localhost:5000/${category}/question/${questionId}/comments`,
+      commentData
+    )
     window.location.reload()
   } catch (error) {
     console.error('Error heree:', error)

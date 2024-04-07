@@ -1,8 +1,12 @@
 <script setup>
+import { onMounted } from 'vue'
 import QuestionPost from '../components/QuestionPost.vue'
 import { usePostStore } from '@/stores/postStore'
 
 const postStore = usePostStore()
+onMounted(() => {
+  postStore.fetchPosts()
+})
 </script>
 
 <template>
