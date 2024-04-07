@@ -28,6 +28,7 @@
 <script setup>
 import { defineProps, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import ProfilePicture from './ProfilePicture.vue'
 
 const props = defineProps({
   post: Object
