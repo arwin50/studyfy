@@ -4,11 +4,11 @@
     class="flex flex-col w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md"
   >
     <div class="flex flex-row w-full p-7">
-      <ProfilePicture :user="currentPost.author"/>
+      <ProfilePicture :user="currentPost.author" />
       <div class="flex p-3 w-full items-center">
         <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
         <span class="text-black font-semibold ml-3 text-xs rounded-full px-2 py-1 bg-green-200"
-          >{{ currentPost.subject.subjectTitle  }}
+          >{{ currentPost.subject.subjectTitle }}
         </span>
       </div>
       <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
@@ -31,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row w-full px-7 pb-7">
+    <div class="flex flex-row w-full px-7">
       <span class="text-black text-xl">
         {{ currentPost.body }}
       </span>
@@ -52,33 +52,35 @@
         :key="index"
         :answer="answer"
       >
-        <ProfilePicture :user="answer.author"/>
-          <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7 break-words">
-            <div class="flex flex-row justify-between">
-              <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
-              <CommentEditTools 
-                v-if="toggleEditTools[index]" 
-                :currentComment="answer"
-                :newCommentBody="answer.body"
-                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
-              />
-              <CommentMenu 
-                v-if="!toggleEditTools[index]" 
-                :currentComment="answer" 
-                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
-              />
-            </div>
-            <textarea
+        <ProfilePicture :user="answer.author" />
+        <div
+          class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7 break-words"
+        >
+          <div class="flex flex-row justify-between">
+            <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+            <CommentEditTools
               v-if="toggleEditTools[index]"
-              className="flex w-full h-full p-2 pe-10 bg-white rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
-              placeholder="Write your answer..."
-              v-model="answer.body"
-              @input="autoGrow"
+              :currentComment="answer"
+              :newCommentBody="answer.body"
+              @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
             />
-            <span v-if="!toggleEditTools[index]">
-              {{ answer.body }}
-            </span>
+            <CommentMenu
+              v-if="!toggleEditTools[index]"
+              :currentComment="answer"
+              @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
+            />
           </div>
+          <textarea
+            v-if="toggleEditTools[index]"
+            className="flex w-full h-full p-2 pe-10 bg-white rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
+            placeholder="Write your answer..."
+            v-model="answer.body"
+            @input="autoGrow"
+          />
+          <span v-if="!toggleEditTools[index]">
+            {{ answer.body }}
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -138,13 +140,13 @@ onMounted(async () => {
 
 const autoGrow = (event) => {
   const textarea = event.target
-  textarea.style.height = "5px"
-  textarea.style.height = (textarea.scrollHeight) + "px"
+  textarea.style.height = '5px'
+  textarea.style.height = textarea.scrollHeight + 'px'
 }
 </script>
 
 <style scoped>
-  textarea {
+textarea {
   resize: none;
-  }
+}
 </style>

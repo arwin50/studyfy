@@ -8,7 +8,7 @@
       class="hover:bg-slate-100"
     >
       <div class="flex flex-row ml-6 mt-5 mb-4 w-[93%] gap-1">
-        <ProfilePicture :user="props.post.author"/>
+        <ProfilePicture :user="props.post.author" />
         <div class="flex p-2 items-center w-[95%]">
           <span class="text-black text-lg font-semibold">{{ props.post.author.displayName }} </span>
           <span class="text-black font-semibold ml-auto text-xs rounded-full px-2 py-1 bg-green-200"
@@ -16,7 +16,7 @@
           </span>
         </div>
       </div>
-      <div class="flex flex-row w-full px-7 mb-1 break-words">
+      <div class="flex flex-row w-full px-7 mb-1 break-words pb-4">
         <span class="text-black text-xl">
           {{ props.post.body }}
         </span>

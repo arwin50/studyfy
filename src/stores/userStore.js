@@ -13,9 +13,9 @@ export const useUserStore = defineStore('user', {
     },
     async fetchUser() {
       try {
-        const response = await axios.get('http://localhost:5000/usermounted', {
-          withCredentials: true
-        })
+          const response = await axios.get('http://localhost:5000/usermounted', {
+            withCredentials: true
+          })
         this.setUser(response.data)
       } catch (error) {
         console.error('Error fetching user:', error)
