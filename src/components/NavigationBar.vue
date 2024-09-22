@@ -17,11 +17,10 @@
       <li v-if="userStore.user && userStore.user.image" class="mr-4">
         <button class="text-black text-base" @click="logout">Logout</button>
       </li>
-      <li v-if="userStore.user && userStore.user.image" class="flex" @click="togglePictureMenu">
+      <li v-if="userStore.user && userStore.user.image" class="flex flex-end">
         <div class="h-8 rounded-full overflow-hidden">
           <img :src="userStore.user.image" class="h-full w-full" />
         </div>
-        <div v-if="isPictureClicked" class="absolute right-4 top-12 pt-0.5 w-[12%]"></div>
       </li>
       <li v-else class="ml-auto" @click="togglePictureMenu">
         <div class="border rounded-full border-[#2f3e46] cursor-pointer">

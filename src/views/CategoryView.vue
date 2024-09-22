@@ -1,9 +1,9 @@
 <script setup>
 import QuestionPost from '../components/QuestionPost.vue'
+import categoryDescription from '@/components/categoryDescription.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import { useRoute } from 'vue-router'
-import CategoryDescription from '../components/CategoryDescription.vue'
 
 const route = useRoute()
 let category = ref(route.params.category)
@@ -44,7 +44,7 @@ watch(
 <template>
   <div class="flex flex-col min-h-full w-full items-center">
     <div class="w-full">
-      <CategoryDescription />
+      <categoryDescription />
     </div>
     <QuestionPost v-for="post in posts" :key="post._id" :post="post" />
   </div>

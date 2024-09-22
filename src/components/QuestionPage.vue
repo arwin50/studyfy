@@ -4,18 +4,12 @@
     class="flex flex-col w-2/3 mx-10 my-5 bg-white rounded-lg drop-shadow-md"
   >
     <div class="flex flex-row w-full p-7">
-      <div class="flex flex-row w-full gap-1">
-        <div class="w-12 rounded-full bg-black overflow-hidden">
-          <img :src="currentPost.author.image" alt="pfp-test" class="h-full w-full" />
-        </div>
-        <div class="flex p-2 items-center w-[95%]">
-          <span class="text-black text-lg font-semibold"
-            >{{ currentPost.author.displayName }}
-          </span>
-          <span class="text-black font-semibold ml-auto text-xs rounded-full px-2 py-1 bg-green-200"
-            >{{ currentPost.subject.subjectTitle }}
-          </span>
-        </div>
+      <ProfilePicture :user="currentPost.author"/>
+      <div class="flex p-3 w-full items-center">
+        <span class="text-black text-base font-semibold">{{ currentPost.author.displayName }}</span>
+        <span class="text-black font-semibold ml-3 text-xs rounded-full px-2 py-1 bg-green-200"
+          >{{ currentPost.subject.subjectTitle  }}
+        </span>
       </div>
       <div v-if="currentPost.author._id == userStore.user._id" class="flex flex-col">
         <v-icon name="bi-three-dots" scale="1.3" @click="togglePostMenu" class="cursor-pointer" />
@@ -37,7 +31,7 @@
         </div>
       </div>
     </div>
-    <div class="flex flex-row w-full px-7 mb-8">
+    <div class="flex flex-row w-full px-7 pb-7">
       <span class="text-black text-xl">
         {{ currentPost.body }}
       </span>
@@ -58,17 +52,33 @@
         :key="index"
         :answer="answer"
       >
-        <div
-          class="flex flex-col min-h-[10vh] w-full text-black bg-[#edf2f4] rounded-xl p-4 mb-5 gap-3"
-        >
-          <div class="flex flex-row items-center gap-2">
-            <div class="w-10 rounded-full bg-black overflow-hidden">
-              <img :src="answer.author.image" alt="pfp-test" class="h-full w-full" />
+        <ProfilePicture :user="answer.author"/>
+          <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7 break-words">
+            <div class="flex flex-row justify-between">
+              <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+              <CommentEditTools 
+                v-if="toggleEditTools[index]" 
+                :currentComment="answer"
+                :newCommentBody="answer.body"
+                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
+              />
+              <CommentMenu 
+                v-if="!toggleEditTools[index]" 
+                :currentComment="answer" 
+                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
+              />
             </div>
-            <span class="w-full font-semibold"> {{ answer.author.displayName }} </span>
+            <textarea
+              v-if="toggleEditTools[index]"
+              className="flex w-full h-full p-2 pe-10 bg-white rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
+              placeholder="Write your answer..."
+              v-model="answer.body"
+              @input="autoGrow"
+            />
+            <span v-if="!toggleEditTools[index]">
+              {{ answer.body }}
+            </span>
           </div>
-          {{ answer.body }}
-        </div>
       </div>
     </div>
   </div>
@@ -83,6 +93,9 @@
 <script setup>
 import axios from 'axios'
 import AnswerInputBox from '../components/AnswerInputBox.vue'
+import ProfilePicture from './ProfilePicture.vue'
+import CommentMenu from './CommentMenu.vue'
+import CommentEditTools from './CommentEditTools.vue'
 import { onMounted, reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/stores/userStore'
@@ -92,6 +105,7 @@ const userStore = useUserStore()
 const router = useRouter()
 let currentPost = reactive({})
 let showPostMenu = ref(false)
+let toggleEditTools = ref([])
 let route = useRoute()
 const questionId = route.params.questionId
 const category = route.params.category
@@ -121,4 +135,16 @@ onMounted(async () => {
     console.error(error)
   }
 })
+
+const autoGrow = (event) => {
+  const textarea = event.target
+  textarea.style.height = "5px"
+  textarea.style.height = (textarea.scrollHeight) + "px"
+}
 </script>
+
+<style scoped>
+  textarea {
+  resize: none;
+  }
+</style>

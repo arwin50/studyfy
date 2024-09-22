@@ -8,9 +8,7 @@
       class="hover:bg-slate-100"
     >
       <div class="flex flex-row ml-6 mt-5 mb-4 w-[93%] gap-1">
-        <div class="w-12 rounded-full bg-black overflow-hidden">
-          <img :src="props.post.author.image" alt="pfp-test" class="h-full w-full" />
-        </div>
+        <ProfilePicture :user="props.post.author"/>
         <div class="flex p-2 items-center w-[95%]">
           <span class="text-black text-lg font-semibold">{{ props.post.author.displayName }} </span>
           <span class="text-black font-semibold ml-auto text-xs rounded-full px-2 py-1 bg-green-200"
@@ -18,7 +16,7 @@
           </span>
         </div>
       </div>
-      <div class="flex flex-row w-full px-7 mb-10">
+      <div class="flex flex-row w-full px-7 mb-1 break-words">
         <span class="text-black text-xl">
           {{ props.post.body }}
         </span>
@@ -28,8 +26,9 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import ProfilePicture from './ProfilePicture.vue'
 
 const props = defineProps({
   post: Object

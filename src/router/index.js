@@ -9,6 +9,7 @@ import CategoryView from '@/views/CategoryView.vue'
 import UserQuestionsView from '@/views/UserQuestionsView.vue'
 import LoginView from '@/views/LoginView.vue'
 import { usePostStore } from '@/stores/postStore'
+import ProfileView from '@/views/ProfileView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -55,6 +56,11 @@ const router = createRouter({
       name: 'editPost',
       component: EditPostView,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/user/:userId',
+      name: 'profilePage',
+      component: ProfileView
     }
   ]
 })
