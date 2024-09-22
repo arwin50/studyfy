@@ -52,13 +52,33 @@
         :key="index"
         :answer="answer"
       >
-        <div class="size-10 rounded-full bg-black">
-          <img :src="answer.author.image" alt="pfp-test" class="size-10 rounded-full" />
-        </div>
-        <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7">
-          <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
-          {{ answer.body }}
-        </div>
+        <ProfilePicture :user="answer.author"/>
+          <div class="flex flex-col min-h-[10vh] w-[90%] text-black bg-gray-200 rounded-xl p-4 mb-7 break-words">
+            <div class="flex flex-row justify-between">
+              <span class="w-full font-bold pb-2"> {{ answer.author.displayName }} </span>
+              <CommentEditTools 
+                v-if="toggleEditTools[index]" 
+                :currentComment="answer"
+                :newCommentBody="answer.body"
+                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
+              />
+              <CommentMenu 
+                v-if="!toggleEditTools[index]" 
+                :currentComment="answer" 
+                @toggleEditTools="toggleEditTools[index] = !toggleEditTools[index]"
+              />
+            </div>
+            <textarea
+              v-if="toggleEditTools[index]"
+              className="flex w-full h-full p-2 pe-10 bg-white rounded placeholder:bold placeholder-[#737373] outline-none text-black overflow-y-hidden break-words"
+              placeholder="Write your answer..."
+              v-model="answer.body"
+              @input="autoGrow"
+            />
+            <span v-if="!toggleEditTools[index]">
+              {{ answer.body }}
+            </span>
+          </div>
       </div>
     </div>
   </div>
